@@ -2,20 +2,17 @@
 
 include "../conexao.php";
 
-$nome = 'Neto';
-$sobrenome = 'Costa';
-$idade = 34;
-
 try {
     $sql = 'INSERT INTO clientes (nome, sobrenome, idade) VALUES (:nome, :sobrenome, :idade)';
     $prepare = $pdo->prepare($sql);
 
-    $prepare->bindParam(":nome", $nome, PDO::PARAM_STR);
-    $prepare->bindParam(":sobrenome", $sobrenome, PDO::PARAM_STR);
-    $prepare->bindParam(":idade", $idade, PDO::PARAM_INT);
+    $prepare->bindValue(":nome", 'Pedro', PDO::PARAM_STR);
+    $prepare->bindValue(":sobrenome", 'Furtado', PDO::PARAM_STR);
+    $prepare->bindValue(":idade", 35, PDO::PARAM_INT);
+
     $count = $prepare->execute();
-    
     echo "$count . linhas afetadas";
+
 } catch (PDOException $err) {
     echo $err->getMessage();
 }
