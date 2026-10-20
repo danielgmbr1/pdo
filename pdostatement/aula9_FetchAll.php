@@ -1,3 +1,4 @@
+
 <?php
 
 include "../conexao.php";
@@ -13,12 +14,22 @@ include "../conexao.php";
  */
 
 try {
-    $sql = "SELECT * FROM clientes WHERE id > 1";
+    $sql = "SELECT * FROM clientes";
     $prepare = $pdo->prepare($sql);
     $count = $prepare->execute();
     $results = $prepare->fetchAll(PDO::FETCH_OBJ);
 
-    print_r($results);
+    foreach ($results as $linha) {
+        if ($linha->idade >= 50){
+            echo "\nPASSOU DE MEIO CENTENARIO: \n{$linha->id} \t {$linha->nome} \t {$linha->sobrenome} \t {$linha->idade}";
+        }
+
+    else{
+        echo "\nABAIXO DO MEIO CENTENARIO: \n{$linha->id} \t {$linha->nome} \t {$linha->sobrenome} \t {$linha->idade}";
+    }
+        
+    }
+    
 
 } catch (PDOException $err) {
     echo $err->getMessage();
