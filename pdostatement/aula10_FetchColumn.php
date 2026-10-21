@@ -17,10 +17,10 @@ try {
     $sql = "SELECT id, nome, sobrenome, idade,  * FROM clientes";
     $prepare = $pdo->prepare($sql);
     $count = $prepare->execute();
-    $id = $prepare->fetchColumn(2);
-    $nome = $prepare->fetchColumn(3);
-    $sobrenome = $prepare->fetchColumn(2);
-    $idade = $prepare->fetchColumn(3);
+    $id = $prepare->fetchColumn();
+    $nome = $prepare->fetchColumn();
+    $sobrenome = $prepare->fetchColumn();
+    $idade = $prepare->fetchColumn();
     
 
     print_r("$id \t  $nome \t $sobrenome \t $idade");
